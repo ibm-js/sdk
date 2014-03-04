@@ -23,7 +23,7 @@ JSHint max complexity is set to 10 by default but CAN be temporarily put up to 1
 
 * JavaScript code SHOULD NOT hard code style but rely on stylesheets
 * !important MUST NOT be used
-* In stylesheets MUST clearly separates things that we don't supporting changing and document them
+* Stylesheets MUST clearly separates things that we don't supporting changing and document them
 
 
 ### Inheritance Guidelines
