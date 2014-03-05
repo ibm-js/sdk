@@ -19,7 +19,7 @@ if the committer feels this is not hurting the code readability.
 * Calling mycomponent.myproperty = value for ES5-like setters SHOULD refresh the component either directly
   or using a simple delayed refresh mechanism provided by delite/Invalidating.
   If that is not the case it must be clearly documented
-* All widget/custom elements MUST be both enabled for globalization (including translatability & bidi support)
+* All widget/custom elements MUST be enabled for globalization (including translatability & bidi support)
 * All widget/custom elements MUST be enabled for accessibility:
     * keyboard support
     * high contrast support (IE and FF on Windows)
