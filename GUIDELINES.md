@@ -19,8 +19,12 @@ if the committer feels this is not hurting the code readability.
 * Calling mycomponent.myproperty = value for ES5-like setters SHOULD refresh the component either directly
   or using a simple delayed refresh mechanism provided by delite/Invalidating.
   If that is not the case it must be clearly documented
-* All widget/custom elements MUST be both enabled for globalization (including translatability & bidi support) and
-  accessibility (keyboard, visual formatting and screen reader accessibility).
+* All widget/custom elements MUST be both enabled for globalization (including translatability & bidi support)
+* All widget/custom elements MUST be enabled for accessibility:
+    * keyboard support
+    * high contrast support (IE and FF on Windows)
+    * zoom (full zoom, not text only zoom, up to 200%)
+    * screen reader accessibility
 * Variables SHOULD be declared as close to the point where they are first used as it helps to cluster groups of code
   together instead of spreading them throughout a function.
   Variables that are assigned in multiple places of a function (e.g. loop counters)
