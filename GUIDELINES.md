@@ -35,8 +35,8 @@ if the committer feels this is not hurting the code readability.
 
 * JavaScript code SHOULD NOT hard code style but rely on stylesheets
 * !important MUST NOT be used
-* Stylesheets MUST clearly separate rules that we don't supporting changing and document them
-
+* Stylesheets MUST clearly document which properties we don't support changing. It SHOULD layout properties and rules
+ to clearly separate what is not supposed to be changed.
 
 ### Inheritance Guidelines
 
