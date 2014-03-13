@@ -118,6 +118,11 @@ All tests MUST be written using [Intern](http://theintern.io/).
  * checking the state of the widget during and after the typical user interaction scenarios for the widget
  * checking that each event the widget is firing on user interaction is correctly received
 
+#### a11y
+
+All widgets MUST be accessible:
+ * High contrast support should be tested on Windows+IE10/IE11 (FF if supported) (with High Contrast mode enabled in the settings).
+ * Screen readers support should be tested on Windows with JAWS and iOS with VoiceOver.
 
 ## Security Guidelines
 
