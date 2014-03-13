@@ -22,9 +22,6 @@ if the committer feels this is not hurting the code readability.
 * All widget/custom elements MUST be enabled for globalization (including translatability & bidi support)
 * All widget/custom elements MUST be enabled for accessibility:
     * keyboard support
-#### a11y
-
-All widgets MUST be accessible:
     * high contrast support (IE and FF on Windows, with High Contrast mode enabled in the os settings)
     * zoom (full zoom, not text only zoom, up to 200%)
     * screen reader accessibility (supported readers are JAWS on Windows and VoiceOver on iOS)
