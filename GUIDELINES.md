@@ -22,9 +22,12 @@ if the committer feels this is not hurting the code readability.
 * All widget/custom elements MUST be enabled for globalization (including translatability & bidi support)
 * All widget/custom elements MUST be enabled for accessibility:
     * keyboard support
-    * high contrast support (IE and FF on Windows)
+#### a11y
+
+All widgets MUST be accessible:
+    * high contrast support (IE and FF on Windows, with High Contrast mode enabled in the os settings)
     * zoom (full zoom, not text only zoom, up to 200%)
-    * screen reader accessibility
+    * screen reader accessibility (supported readers are JAWS on Windows and VoiceOver on iOS)
 * Variables SHOULD be declared as close to the point where they are first used as it helps to cluster groups of code
   together instead of spreading them throughout a function.
   Variables that are assigned in multiple places of a function (e.g. loop counters)
@@ -117,12 +120,6 @@ All tests MUST be written using [Intern](http://theintern.io/).
 
  * checking the state of the widget during and after the typical user interaction scenarios for the widget
  * checking that each event the widget is firing on user interaction is correctly received
-
-#### a11y
-
-All widgets MUST be accessible:
- * High contrast support should be tested on Windows+IE10/IE11 (FF if supported) (with High Contrast mode enabled in the settings).
- * Screen readers support should be tested on Windows with JAWS and iOS with VoiceOver.
 
 ## Security Guidelines
 
