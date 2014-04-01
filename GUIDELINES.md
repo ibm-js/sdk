@@ -37,7 +37,12 @@ if the committer feels this is not hurting the code readability.
 * !important MUST NOT be used
 * Stylesheets MUST clearly document which properties we don't support changing. It SHOULD layout properties and rules
  to clearly separate what is not supposed to be changed.
-
+* Widgets styling SHOULD NOT use float style property.
+* Widgets Samples SHOULD use delite/themes/defaultapp.css when:
+    * laying out element with borders (defaultapp.css set border-box on everything)
+    * using an element that uses the whole height of the page (height:100% is needed on ascendants, including body)
+    * in need of getting rid of the default margin/padding defined by browsers
+   
 ### Inheritance Guidelines
 
 * Visual components (aka widgets) MUST extend delite/Widget
