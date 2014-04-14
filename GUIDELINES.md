@@ -138,7 +138,9 @@ All tests MUST be written using [Intern](http://theintern.io/).
 
 ## Security Guidelines
 
-Each use of possible evil function like `eval()` MUST be hinted by jshint in the code. 
+Use of possible evil functions like `eval()` or equivalents SHOULD be avoided as much as possible.
+
+When they cannot be avoided, each use of an evil function MUST be hinted by jshint in the code. 
 
 The code MUST also contain a comment explaining why we need that call, when it will be triggered.
 From this we will be able to extract a security guide listing all the potentially harmful call
