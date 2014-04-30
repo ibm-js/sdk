@@ -43,6 +43,7 @@ if the committer feels this is not hurting the code readability.
 helpful to the user to check, then code SHOULD: 
     * throw an exception rather than using console.log() or console.error()
     * add comment to the code about why you throwing the exception
+* Widget Template MUST have a top level tag of type ```<template>```.
 
 ### CSS
 
