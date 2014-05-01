@@ -22,7 +22,8 @@ if the committer feels this is not hurting the code readability.
 * All widget/custom elements MUST be enabled for globalization (including translatability & bidi support)
 * All widget/custom elements MUST be enabled for accessibility:
     * keyboard support
-    * high contrast support (IE and FF on Windows, with High Contrast mode enabled in the os settings)
+    * high contrast support (IE and FF on Windows, with High Contrast mode enabled in the os settings);
+      only necessary for bootstrap theme
     * zoom (full zoom, not text only zoom, up to 200%)
     * screen reader accessibility (supported readers are JAWS on Windows and VoiceOver on iOS)
 * Variables SHOULD be declared as close to the point where they are first used as it helps to cluster groups of code
