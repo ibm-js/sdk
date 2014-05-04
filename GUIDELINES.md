@@ -120,6 +120,22 @@ helpful to the user to check, then code SHOULD:
 
 All tests MUST be written using [Intern](http://theintern.io/).
 
+Tests should be written using the "intern!object" and "intern/chai!assert" modules.
+This implies that we are using the standard asynchronous API for webdriver tests, ex:
+
+```
+return this.remote
+	.elementById("stub-for-blurring")
+		.click()
+		.end()
+	.wait(500)
+	.elementById("choiceDropDown")
+		.isDisplayed(function (err, displayed) {
+			assert.isFalse(displayed, "choiceDropDown popup not visible");
+		})
+		.end();
+```
+
 ### Widget Testing
 
 #### Unit tests SHOULD cover
