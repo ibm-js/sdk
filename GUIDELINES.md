@@ -33,12 +33,12 @@ if the committer feels this is not hurting the code readability.
 * In order to associate an object to be used as `this` when calling a function:
     * If the called function is public _and_ documented the code MUST use a closure construct with a `self` variable to preserve AOP:
     ```js
-         var self = this;
-         this.on("DOMNodeInserted",  function(){ self.publicmethod(); });
+    var self = this;
+    this.on("DOMNodeInserted",  function(){ self.publicmethod(); });
     ```
     * If the called function is either private _or_ not documented the core MUST use Function.prototype.bind():
     ```js
-         this.on("DOMNodeInserted",  this._privatemethod.bind(this));
+    this.on("DOMNodeInserted",  this._privatemethod.bind(this));
     ```
 * By default, code SHOULD NOT check properties or parameters for validity, if there's a particular case where it's especially 
 helpful to the user to check, then code SHOULD: 
