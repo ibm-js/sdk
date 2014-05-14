@@ -22,8 +22,6 @@ if the committer feels this is not hurting the code readability.
 * All widget/custom elements MUST be enabled for globalization (including translatability & bidi support)
 * All widget/custom elements MUST be enabled for accessibility:
     * keyboard support
-    * high contrast support (IE and FF on Windows, with high contrast mode enabled in the OS settings);
-      device specific themes (currently iOS and holodark) are exempt from this rule
     * zoom (full zoom, not text only zoom, up to 200%)
     * screen reader accessibility (supported readers are JAWS on Windows and VoiceOver on iOS)
 * Variables SHOULD be declared as close to the point where they are first used as it helps to cluster groups of code
@@ -57,7 +55,11 @@ helpful to the user to check, then code SHOULD:
     * laying out element with borders (defaultapp.css set border-box on everything)
     * using an element that uses the whole height of the page (height:100% is needed on ascendants, including body)
     * in need of getting rid of the default margin/padding defined by browsers
-   
+* must support high contrast (IE and FF on Windows, with high contrast mode enabled in the OS settings);
+  device specific themes (currently iOS and holodark) are exempt from this rule
+* bootstrap theme will use font-icons rather than CSS sprites, in order to support high-contrast mode and
+  also theme customization (i.e. changing the colors of the icons)
+
 ### Inheritance Guidelines
 
 * Visual components (aka widgets) MUST extend delite/Widget
