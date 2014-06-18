@@ -1,6 +1,11 @@
 # Projects Coding & Testing Guidelines
 
-This guide is covering the coding guidelines common to all ibm-js hosted projects.
+This guide covers the coding guidelines common to all ibm-js hosted projects.
+
+## General
+
+* Components are written in Javascript rather than a derivative like Typescript or CoffeeScript.
+* CSS is generated from Less files (i.e. we are using Less rather than Stylus)
 
 ## JSHint
  
@@ -15,6 +20,8 @@ if the committer feels this is not hurting the code readability.
 
 ### JavaScript
 
+* Components are wrapped in AMD rather than CommonJS or UMD format.  Rationale: this is mainly for the benefit of the
+  build tool, combined with the fact that most of our projects are made for the browser.
 * Getters/Setters MUST use ES5 getter/setter and not getProp/setProp methods.
 * Calling mycomponent.myproperty = value for ES5-like setters SHOULD refresh the component either directly
   or using a simple delayed refresh mechanism provided by delite/Invalidating.
@@ -64,6 +71,21 @@ helpful to the user to check, then code SHOULD:
 
 * Visual components (aka widgets) MUST extend delite/Widget
 * Non visual components SHOULD extend delite/Stateful
+
+### Libraries
+
+We've standardized on a number of support library, both in and outside of the ibm-js account:
+
+* [RequireJS](http://requirejs.org/) - RequireJS is our main AMD loader.  Plugins and builds are
+  tailored for RequireJS.
+* [dcl](http://dcljs.org) - If you need an OO framework to declare classes (with multiple inheritance, advice, etc.),
+  we use dcl.  However, it's also acceptable to declare classes native by specifying a constructor and prototype.
+* [has](https://github.com/ibm-js/requirejs-dplugins/blob/master/has.js) - Feature and browser sniffing is done via
+  `has.add()` and `has()`, so that a build can strip unneeded code. We use the `has()` implementation in
+   `ibm-js/requirejs-dplugins/has`.
+* [text!](https://github.com/requirejs/text) - we load non JS files via `requirejs-text/text!`.
+* Loading message files (translated into different languages) is done via `ibm-js/requirejs-dplugins/i18n`
+
 
 ### Naming Guidelines
 
@@ -121,10 +143,25 @@ helpful to the user to check, then code SHOULD:
 
 ## Testing Guidelines
 
-All tests MUST be written using [Intern](http://theintern.io/).
+### API For Writing Tests
 
-Tests should be written using the `intern!object` and `intern/chai!assert` modules.
-This implies that we are using the standard asynchronous API for webdriver tests, ex:
+All tests MUST be written using [Intern](http://theintern.io/).
+Tests should be written using  `intern!object`, which provides the `registerSuite()` method and also
+the API for functional tests.
+
+For assertions, we use the `intern/chai!assert` module.
+We prefer `assert.strictEqual()` to `assert.equal()`, just like we prefer `===` to `==`.
+Also, we add hints to each assertion so if there's a failure we know which assert fired.  For example:
+
+```
+assert.strictEqual(width, "100px", "width");
+assert.strictEqual(height, "100px", "height");
+```
+
+#### Functional tests
+
+For functional tests, we are using the standard asynchronous API for webdriver tests, where
+the test is written as a promise chain, and that chain is returned, ex:
 
 ```js
 return this.remote
@@ -138,6 +175,40 @@ return this.remote
 		})
 		.end();
 ```
+
+#### Unit tests
+
+When practical, asynchronous unit tests should be written as chained promises too, for example:
+
+```
+this.timeout = 10000;		// (if necessary; default is 1000ms)
+return myWidget.open().then(function () {
+    return myWidget.close();
+}.then(function() {
+    var cs = getComputedStyle(myWidget);
+    assert.strictEqual(cs.width, "100px", "myWidget width");
+});
+```
+
+When it's not possible to make a promise chain,
+we use Intern's `this.async(timeout)` method, along with `d.rejectOnError()` and `d.callback()`, for example:
+
+
+```
+var dfd = this.async(10000);
+myWidget.open();
+setTimeout(d.rejectOnError(function () {
+   myWidget.close();
+   setTimeout(d.callback(function () {
+     var cs = getComputedStyle(myWidget);
+     assert.strictEqual(cs.width, "0px", "myWidget width");
+   }, 100);
+}), 100);
+```
+
+Note how the final asynchronous callback must be wrapped by `d.callback()`,
+and all other (intermediate) asynchronous callbacks are wrapped by `d.rejectOnError()`.
+
 
 ### Widget Testing
 
