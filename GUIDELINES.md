@@ -47,6 +47,12 @@ We standardize on using the following plugins:
   Feature and browser sniffing is done via
   `has.add()` and `has()`, so that a build can strip unneeded code.
 
+### API documentation
+
+Public methods and properties should use JSDoc format, as detailed in
+https://docs.google.com/document/d/1fGBLuDAJRHFuSE4_NM2YfbRcCeYV40KWDXCuVyiSV_U/edit#heading=h.mrkbtrfyd36f
+
+
 ### Other JavaScript Coding Guidelines
 
 * Getters/Setters MUST use ES5 getter/setter and not getProp/setProp methods.
