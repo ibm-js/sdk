@@ -28,16 +28,21 @@ if the committer feels this is not hurting the code readability.
 
 ### AMD
 
-Components are wrapped in AMD rather than CommonJS or UMD format.  Rationale: this is mainly for the benefit of the
-build tool, combined with the fact that most of our projects are made for the browser.
+For projects to be used in the browser (as opposed to Node.js specific projects),
+modules are wrapped in [AMD](http://requirejs.org/docs/whyamd.html#amd) rather than CommonJS or UMD format.
+Rationale: this is mainly for the benefit of the build tool.
 
-[RequireJS](http://requirejs.org/)is our main AMD loader.  Plugins and builds are
-tailored for RequireJS.
+[RequireJS](http://requirejs.org/) is our main AMD loader.  Plugins and builds are tailored for RequireJS.
 
 We standardize on using the following plugins:
 
-* [requirejs/text!](https://github.com/requirejs/text) - we load non JS files via `requirejs-text/text!`.
-* Loading message files (translated into different languages) is done via `ibm-js/requirejs-dplugins/i18n`
+* [requirejs-domReady!](https://github.com/requirejs/domReady) - to detect when the DOM has finished loading
+* [requirejs-text!](https://github.com/requirejs/text) - to load non JS files (ex: HTML)
+* [requirejs-dplugins/i18n!](https://github.com/ibm-js/requirejs-dplugins/blob/master/i18n.js) - for loading
+  message files (translated into different languages).
+* [requirejs-dplugins/has!](https://github.com/ibm-js/requirejs-dplugins/blob/master/has.js) -
+  Feature and browser sniffing is done via
+  `has.add()` and `has()`, so that a build can strip unneeded code.
 
 ### Other JavaScript Coding Guidelines
 
@@ -182,7 +187,8 @@ assert.strictEqual(height, "100px", "height");
 
 #### Functional tests
 
-For functional tests, we are using the standard asynchronous API for webdriver tests, where
+For functional tests, we are using the
+[Intern Promised Based Webdriver API](https://github.com/theintern/intern/blob/1.7/lib/wd.js), where
 the test is written as a promise chain, and that chain is returned, ex:
 
 ```js
