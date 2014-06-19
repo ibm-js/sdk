@@ -11,8 +11,11 @@ This guide covers the coding guidelines common to all ibm-js hosted projects.
     * screen reader accessibility (supported readers are JAWS on Windows and VoiceOver on iOS)
     * must support high contrast (IE and FF on Windows, with high contrast mode enabled in the OS settings);
       device specific themes (currently iOS and holodark) are exempt from this rule
+* The projects will only support modern browser/platforms: FF31+, Chrome latest, IE9/10+, Safari 7+,
+  Android 4.1+, iOS6+, WindowsPhone8+ (BB10+?)
 
-(TODO: add list of browsers support, plus anything else?)
+See https://docs.google.com/document/d/1Sa0rn4udqO_ea20o4xxogRP6P6ZLgHPMEj4A2V4g7hM
+for more details.
 
 ## Javascript Coding Guidelines
 
