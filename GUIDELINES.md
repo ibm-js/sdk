@@ -57,7 +57,7 @@ https://docs.google.com/document/d/1fGBLuDAJRHFuSE4_NM2YfbRcCeYV40KWDXCuVyiSV_U/
 
 * Getters/Setters MUST use ES5 getter/setter and not getProp/setProp methods.
 * Calling mycomponent.myproperty = value for ES5-like setters SHOULD refresh the component either directly
-  or using a simple delayed refresh mechanism provided by delite/Invalidating.
+  or using a simple delayed refresh mechanism provided by decor/Invalidating.
   If that is not the case it must be clearly documented
 * Variables SHOULD be declared as close to the point where they are first used as it helps to cluster groups of code
   together instead of spreading them throughout a function.
@@ -82,7 +82,7 @@ helpful to the user to check, then code SHOULD:
 ### Inheritance Guidelines
 
 * Visual components (aka widgets) MUST extend delite/Widget
-* Non visual components SHOULD extend delite/Stateful
+* Non visual components SHOULD extend decor/Stateful
 
 ### Libraries
 
