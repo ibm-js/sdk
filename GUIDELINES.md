@@ -79,6 +79,45 @@ helpful to the user to check, then code SHOULD:
     * add comment to the code about why you throwing the exception
 * Widget Template MUST have a top level tag of type ```<template>```.
 
+### OO
+
+If you need an OO framework to declare classes (with multiple inheritance, advice, etc.), we use
+[dcl](http://dcljs.org).  However, it's also acceptable to declare classes native by specifying a constructor
+and prototype.
+
+For classes defined by [dcl](http://dcljs.org) (or delite/register), a method in a subclass should call the
+superclass' method (of the same name) via `dcl.superCall()`, or its alias `delite/register#superCall()`.  For example:
+
+```js
+appendChild: dcl.superCall(function (sup) {
+	return function (child) {
+		var res = sup.call(this.containerNode, child);
+		this.onAddChild(child);
+	};
+})
+```
+
+`dcl.after()`/`dcl.before()`/`dcl.around()` should
+be reserved for when the superclass needs to execute some code before/after all the subclasses' methods run.
+For example, `delite/Widget#attachedCallback()` sets `this.attached = true` after the `attachedCallback()` methods
+in all the subclasses run.
+
+Note that we sometimes automatically chain class methods using `dcl.chainAfter()` / `dcl.chainBefore()`, for example
+delite/Widget does:
+
+```js
+dcl.chainAfter(Widget, "postRender");
+```
+
+In this case, the `dcl.superCall()` is implied, and should not done explicitly, for example,
+a widget's `postRender()` method would be:
+
+```js
+postRender: function () {
+	// code here will be executed after superclasses' postRender() methods run
+}
+```
+
 ### Inheritance Guidelines
 
 * Visual components (aka widgets) MUST extend delite/Widget
@@ -88,13 +127,11 @@ helpful to the user to check, then code SHOULD:
 
 We've standardized on a number of support libraries, both in and outside of the ibm-js account:
 
-* [dcl](http://dcljs.org) - If you need an OO framework to declare classes (with multiple inheritance, advice, etc.),
-  we use dcl.  However, it's also acceptable to declare classes native by specifying a constructor and prototype.
 * [has](https://github.com/ibm-js/requirejs-dplugins/blob/master/has.js) - Feature and browser sniffing is done via
   `has.add()` and `has()`, so that a build can strip unneeded code. We use the `has()` implementation in
    `ibm-js/requirejs-dplugins/has`.
 
-See also the "AMD" section above.
+See also the "AMD" and "OO" sections above.
 
 #### Properties/functions naming
 
